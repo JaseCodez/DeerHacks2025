@@ -41,8 +41,8 @@ const months = [
 const eventsArr = [
   {
     day: 13,
-    month: 11,
-    year: 2022,
+    month: 2,
+    year: 2025,
     events: [
       {
         title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
@@ -264,6 +264,9 @@ function updateEvents(date) {
             </div>
             <div class="event-time">
               <span class="event-time">${event.time}</span>
+            </div>
+            <div class="event-location">
+              <span class="event-location">${event.location}</span>
             </div>
         </div>`;
       });

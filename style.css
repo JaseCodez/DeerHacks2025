@@ -325,6 +325,13 @@ body {
   margin-left: 15px;
   pointer-events: none;
 }
+.events .event .event-location {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #878895;
+  margin-left: 15px;
+  pointer-events: none;
+}
 .events .event:hover .event-time {
   color: #fff;
 }
@@ -392,7 +399,7 @@ body {
   transition: max-height 0.5s ease;
 }
 .add-event-wrapper.active {
-  max-height: 300px;
+  max-height: 400px;
 }
 .add-event-header {
   width: 100%;
@@ -465,10 +472,10 @@ body {
   border: none;
   color: #fff;
   background-color: var(--primary-clr);
-  border-radius: 5px;
+  border-radius: 7px;
   cursor: pointer;
-  padding: 5px 10px;
-  border: 1px solid var(--primary-clr);
+  padding: 7px 10px;
+  border: 3px solid var(--primary-clr);
 }
 .add-event-footer .add-event-btn:hover {
   background-color: transparent;
