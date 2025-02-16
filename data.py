@@ -118,11 +118,20 @@ model="gpt-4",
 messages=[
     {"role": "system", "content": "Provide output in valid JSON. The data schema should be like this: " + json.dumps(example_json)},
     {"role": "user", "content": outline_prompt},
+    {"role": "system", "content": "Provide output in valid JSON. The data schema should be like this: " + json.dumps(example_json)},
+    {"role": "user", "content": outline_prompt},
     ]
 )
 
 output = response.choices[0].message.content
 print(output)
+
+json_object = json.loads(output)
+
+print(json_object)
+
+
+
 
 json_object = json.loads(output)
 
