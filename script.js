@@ -294,26 +294,6 @@ addEventTitle.addEventListener("input", (e) => {
   addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
-//function to suggest events
-suggestBtn.addEventListener("click", () => {
-  suggestWrapper.classList.toggle("active");
-});
-
-suggestCloseBtn.addEventListener("click", () => {
-  suggestWrapper.classList.remove("active");
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
-    suggestWrapper.classList.remove("active");
-  }
-});
-
-//allow 50 chars in suggestcity
-suggestCity.addEventListener("input", (e) => {
-  suggestCity.value = suggestCity.value.slice(0, 60);
-});
-
 function defineProperty() {
   var osccred = document.createElement("div");
   osccred.innerHTML =
@@ -442,6 +422,26 @@ addEventSubmit.addEventListener("click", () => {
   if (!activeDayEl.classList.contains("event")) {
     activeDayEl.classList.add("event");
   }
+});
+
+//function to suggest events
+suggestBtn.addEventListener("click", () => {
+  suggestWrapper.classList.toggle("active");
+});
+
+suggestCloseBtn.addEventListener("click", () => {
+  suggestWrapper.classList.remove("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
+    suggestWrapper.classList.remove("active");
+  }
+});
+
+//allow 50 chars in suggestcity
+suggestCity.addEventListener("input", (e) => {
+  suggestCity.value = suggestCity.value.slice(0, 60);
 });
 
 //function to delete event when clicked on event
