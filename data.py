@@ -10,8 +10,8 @@ province="Quebec"
 country="Canada"
 start_date="Feb 17, 2025"
 end_date="Feb 19, 2025" # including end_date can be optional
-start_time="10am"
-end_time="11pm"
+start_time="10:00"
+end_time="23:00"
 
 # template for a single day of planning
 example_json = {
@@ -21,15 +21,18 @@ example_json = {
     "events": [
        {
            "title": "Visit Richmond Green Sports Centre and Park",
-           "time": "10:00 AM",
+           "time": "10:00",
+           "location": "Canada"
        },
        {
            "title": "Relax at Mill Pond Park",
-           "time": "11:00 AM",
+           "time": "11:00",
+           "location": "Canada"
        },
        {
            "title": "Enjoy a movie at SilverCity Richmond Hill",
-           "time": "1:00 PM"
+           "time": "13:00",
+           "location": "Canada"
        }
      ],
 }
@@ -37,11 +40,9 @@ example_json = {
 
 
 
-location_option_1=(f"{province} in {country}")
-location_option_2=(f"{province}")
-if city != "":
+location_option_1=(f"{city} in {country}")
+if province != "":
     location_option_1 = (f"{city}, {province} in {country}")
-    location_option_2=(f"{city}")
 
 
 date_option=(f"on {start_date}")
@@ -60,15 +61,18 @@ if end_date != "":
         "events": [
         {
             "title": "Visit Richmond Green Sports Centre and Park",
-            "time": "10:00 AM",
+            "time": "10:00",
+            "location": "Canada"
         },
         {
             "title": "Relax at Mill Pond Park",
-            "time": "11:00 AM",
+            "time": "11:00",
+            "location": "Canada"
         },
         {
             "title": "Enjoy a movie at SilverCity Richmond Hill",
-            "time": "1:00 PM"
+            "time": "13:00",
+            "location": "Canada"
         }
         ],
     },
@@ -79,15 +83,18 @@ if end_date != "":
         "events": [
         {
             "title": "Explore Oak Ridges Moraine",
-            "time": "10:00 AM",
+            "time": "10:00",
+            "location": "Canada"
         },
         {
             "title": "Lunch at Touro Steakhouse",
-            "time": "11:00 AM",
+            "time": "14:00 AM",
+            "location": "Canada"
         },
         {
             "title": "Stargazing at David Dunlap Observatory",
-            "time": "1:00 PM"
+            "time": "21:00",
+            "location": "Canada"
         }
         ],
         }
@@ -98,7 +105,7 @@ if end_date != "":
 
 outline_prompt = (
     f'I am going to {location_option_1}, {date_option}. '
-    f'{quantifier_option}, schedule what events/places I should do ONLY in {location_option_2} {date_option}. ' 
+    f'{quantifier_option}, schedule what events/places I should do ONLY in {city} from {start_time} to {end_time}. ' 
     f'Please provide the response ONLY in JSON format, AND NOTHING ELSE.'
 )
 print(outline_prompt)
