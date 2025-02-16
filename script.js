@@ -16,7 +16,22 @@ const calendar = document.querySelector(".calendar"),
   addEventFrom = document.querySelector(".event-time-from "),
   addEventTo = document.querySelector(".event-time-to "),
   addEventSubmit = document.querySelector(".add-event-btn ");
-
+  suggestBtn = document.querySelector(".suggest"),
+  suggestWrapper = document.querySelector(".suggest-wrapper "),
+  suggestCloseBtn = document.querySelector(".close "),
+  suggestCity = document.querySelector(".suggest-city "),
+  suggestCountry = document.querySelector(".suggest-country "),
+  suggestFrom = document.querySelector(".suggest-start-date "),
+  suggestTo = document.querySelector(".suggest-end-date "),
+  suggestSubmit = document.querySelector(".suggest-btn ");
+  suggestBtn = document.querySelector(".suggest"),
+  suggestWrapper = document.querySelector(".suggest-wrapper "),
+  suggestCloseBtn = document.querySelector(".close "),
+  suggestCity = document.querySelector(".suggest-city "),
+  suggestCountry = document.querySelector(".suggest-country "),
+  suggestFrom = document.querySelector(".suggest-start-date "),
+  suggestTo = document.querySelector(".suggest-end-date "),
+  suggestSubmit = document.querySelector(".suggest-btn ");
 let today = new Date();
 let activeDay;
 let month = today.getMonth();
@@ -237,13 +252,6 @@ function getActiveDay(date) {
   eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
-// Add event 
-function addEvent(date) {
-  let events = "";
-}
-
-
-
 //function update events when a day is active
 function updateEvents(date) {
   let events = "";
@@ -354,6 +362,12 @@ addEventTo.addEventListener("input", (e) => {
   if (addEventTo.value.length > 5) {
     addEventTo.value = addEventTo.value.slice(0, 5);
   }
+});
+
+//ensure end date is after start date
+suggestSubmit.addEventListener("click", () => {
+  const suggestStart = suggestStart.value;
+  const suggestEnd = suggestEnd.value;
 });
 
 //function to add event to eventsArr
