@@ -355,12 +355,6 @@ addEventTo.addEventListener("input", (e) => {
   }
 });
 
-//ensure end date is after start date
-suggestSubmit.addEventListener("click", () => {
-  const suggestStart = suggestStart.value;
-  const suggestEnd = suggestEnd.value;
-});
-
 //function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {
   const eventTitle = addEventTitle.value;
