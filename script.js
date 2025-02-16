@@ -23,6 +23,8 @@ const calendar = document.querySelector(".calendar"),
   suggestCity = document.querySelector(".suggest-city "),
   suggestProvince = document.querySelector(".suggest-province "),
   suggestCountry = document.querySelector(".suggest-country "),
+  suggestFrom = document.querySelector(".suggest-start-time "),
+  suggestTo = document.querySelector(".suggest-end-time "),
   suggestNumDates = document.querySelector(".suggest-num-dates "),
   suggestSubmit = document.querySelector(".suggest-btn ");
 let today = new Date();
@@ -309,6 +311,27 @@ addEventTitle.addEventListener("input", (e) => {
   addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
+//function to suggest events
+suggestBtn.addEventListener("click", () => {
+  suggestWrapper.classList.toggle("active");
+  addEventWrapper.classList.remove("active");
+});
+
+suggestCloseBtn.addEventListener("click", () => {
+  suggestWrapper.classList.remove("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
+    suggestWrapper.classList.remove("active");
+  }
+});
+
+//allow 50 chars in suggestcity
+suggestCity.addEventListener("input", (e) => {
+  suggestCity.value = suggestCity.value.slice(0, 60);
+});
+
 function defineProperty() {
   var osccred = document.createElement("div");
   osccred.innerHTML =
@@ -347,6 +370,26 @@ addEventTo.addEventListener("input", (e) => {
   }
   if (addEventTo.value.length > 5) {
     addEventTo.value = addEventTo.value.slice(0, 5);
+  }
+});
+
+suggestFrom.addEventListener("input", (e) => {
+  suggestFrom.value = suggestFrom.value.replace(/[^0-9:]/g, "");
+  if (suggestFrom.value.length === 2) {
+    suggestFrom.value += ":";
+  }
+  if (suggestFrom.value.length > 5) {
+    suggestFrom.value = suggestFrom.value.slice(0, 5);
+  }
+});
+
+suggestTo.addEventListener("input", (e) => {
+  suggestTo.value = suggestTo.value.replace(/[^0-9:]/g, "");
+  if (suggestTo.value.length === 2) {
+    suggestTo.value += ":";
+  }
+  if (suggestTo.value.length > 5) {
+    suggestTo.value = suggestTo.value.slice(0, 5);
   }
 });
 
@@ -442,42 +485,53 @@ addEventSubmit.addEventListener("click", () => {
   }
 });
 
-//function to suggest events
-suggestBtn.addEventListener("click", () => {
-  suggestWrapper.classList.toggle("active");
-  addEventWrapper.classList.remove("active");
-});
-
-suggestCloseBtn.addEventListener("click", () => {
-  suggestWrapper.classList.remove("active");
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
-    suggestWrapper.classList.remove("active");
-  }
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
-    suggestWrapper.classList.remove("active");
-  }
-});
-
-//allow 50 chars in suggestcity
-suggestCity.addEventListener("input", (e) => {
-  suggestCity.value = suggestCity.value.slice(0, 60);
-});
-
 suggestSubmit.addEventListener("click", () => {
   const suggestedCity = suggestCity.value;
   const suggestedProvince = suggestProvince.value;
   const suggestedCountry = suggestCountry.value;
+  const suggestedTimeStart = suggestFrom.value;
+  const suggestedTimeEnd = suggestTo.value;
   const suggestedDays = suggestNumDates.value;
-  if(suggestedCity === "" || suggestedCountry === "" || suggestNumDates === "") {
+  const startDay = activeDay;
+  const startMonth = month;
+  const startYear = year;
+
+
+  if(suggestedCity === "" || suggestedCountry === "" || suggestNumDates === "" || suggestedTimeStart == "" ||suggestedTimeEnd === "") {
     alert("Please fill out all fields.");
     return;
   }
+
+  //check correct time format 24 hour
+  const timeFromArr = suggestedTimeStart.split(":");
+  const timeToArr = suggestedTimeEnd.split(":");
+  if (
+    timeFromArr.length !== 2 ||
+    timeToArr.length !== 2 ||
+    timeFromArr[0] > 23 ||
+    timeFromArr[1] > 59 ||
+    timeToArr[0] > 23 ||
+    timeToArr[1] > 59
+  ) {
+    alert("Invalid Time Format");
+    return;
+  }
+
+  const suggestedStart = convertTime(suggestedTimeStart);
+  const suggestedEnd = convertTime(suggestedTimeEnd);
+
+  const suggested = {"city":suggestedCity, "province":suggestedProvince, "country":suggestedCountry, "start_day":startDay, "start_month":startMonth, "start_year":startYear, "start_time":suggestedStart, "end_time":suggestedEnd, "num_days":suggestedDays}
+  
+  const response = fetch("http://127.0.0.1:5000/process", {
+    mode: "no-cors",    
+    method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(suggested)
+    });
+
+  print(response)
 
   // output city, country, days here and call data.py
 
@@ -485,11 +539,14 @@ suggestSubmit.addEventListener("click", () => {
 
   // to add new event, look at function for addEventSubmit and reference all that code
 
+  
+  suggestWrapper.classList.remove("active");
   suggestCity.value = "";
   suggestProvince.value = "";
   suggestCountry.value = "Afghanistan";
   suggestNumDates.value = "1 Day";
-  suggestWrapper.classList.remove("active");
+  suggestFrom.value = "";
+  suggestTo.value = "";
 })
 
 //function to delete event when clicked on event
