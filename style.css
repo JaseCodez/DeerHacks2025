@@ -437,7 +437,7 @@ body {
   transition: max-height 0.5s ease;
 }
 .suggest-wrapper.active {
-  max-height: 350px;
+  max-height: 450px;
 }
 .add-event-header {
   width: 100%;
