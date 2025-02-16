@@ -21,16 +21,7 @@ const calendar = document.querySelector(".calendar"),
   suggestCloseBtn = document.querySelector(".close "),
   suggestCity = document.querySelector(".suggest-city "),
   suggestCountry = document.querySelector(".suggest-country "),
-  suggestFrom = document.querySelector(".suggest-start-date "),
-  suggestTo = document.querySelector(".suggest-end-date "),
-  suggestSubmit = document.querySelector(".suggest-btn ");
-  suggestBtn = document.querySelector(".suggest"),
-  suggestWrapper = document.querySelector(".suggest-wrapper "),
-  suggestCloseBtn = document.querySelector(".close "),
-  suggestCity = document.querySelector(".suggest-city "),
-  suggestCountry = document.querySelector(".suggest-country "),
-  suggestFrom = document.querySelector(".suggest-start-date "),
-  suggestTo = document.querySelector(".suggest-end-date "),
+  suggestNumDates = document.querySelector(".suggest-num-dates "),
   suggestSubmit = document.querySelector(".suggest-btn ");
 let today = new Date();
 let activeDay;

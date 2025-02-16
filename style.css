@@ -474,6 +474,12 @@ body {
   background-color: transparent;
   color: var(--primary-clr);
 }
+#country {
+  width:165px;
+}
+#suggest-num-dates {
+  width:165px;
+}
 
 /* media queries */
 
