@@ -237,6 +237,13 @@ function getActiveDay(date) {
   eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
+// Add event 
+function addEvent(date) {
+  let events = "";
+}
+
+
+
 //function update events when a day is active
 function updateEvents(date) {
   let events = "";
