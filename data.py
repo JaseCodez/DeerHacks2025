@@ -40,11 +40,9 @@ example_json = {
 
 
 
-location_option_1=(f"{province} in {country}")
-location_option_2=(f"{province}")
-if city != "":
+location_option_1=(f"{city} in {country}")
+if province != "":
     location_option_1 = (f"{city}, {province} in {country}")
-    location_option_2=(f"{city}")
 
 
 date_option=(f"on {start_date}")
@@ -107,7 +105,7 @@ if end_date != "":
 
 outline_prompt = (
     f'I am going to {location_option_1}, {date_option}. '
-    f'{quantifier_option}, schedule what events/places I should do ONLY in {location_option_2} from {start_time} to {end_time}. ' 
+    f'{quantifier_option}, schedule what events/places I should do ONLY in {city} from {start_time} to {end_time}. ' 
     f'Please provide the response ONLY in JSON format, AND NOTHING ELSE.'
 )
 print(outline_prompt)
