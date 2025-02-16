@@ -15,6 +15,7 @@ const calendar = document.querySelector(".calendar"),
   addEventTitle = document.querySelector(".event-name "),
   addEventFrom = document.querySelector(".event-time-from "),
   addEventTo = document.querySelector(".event-time-to "),
+  addLocation = document.querySelector(".event-location "),
   addEventSubmit = document.querySelector(".add-event-btn ");
 
 let today = new Date();
@@ -37,25 +38,27 @@ const months = [
   "December",
 ];
 
-// const eventsArr = [
-//   {
-//     day: 13,
-//     month: 11,
-//     year: 2022,
-//     events: [
-//       {
-//         title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
-//         time: "10:00 AM",
-//       },
-//       {
-//         title: "Event 2",
-//         time: "11:00 AM",
-//       },
-//     ],
-//   },
-// ];
+const eventsArr = [
+  {
+    day: 13,
+    month: 11,
+    year: 2022,
+    events: [
+      {
+        title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
+        time: "10:00 AM",
+        location: "jo"
+      },
+      {
+        title: "Event 2",
+        time: "11:00 AM",
+        location: "jo2"
+      },
+    ],
+  },
+];
 
-const eventsArr = [];
+//const eventsArr = [];
 getEvents();
 console.log(eventsArr);
 
@@ -334,6 +337,7 @@ addEventSubmit.addEventListener("click", () => {
   const eventTitle = addEventTitle.value;
   const eventTimeFrom = addEventFrom.value;
   const eventTimeTo = addEventTo.value;
+  const eventLocation = addLocation.value;
   if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
@@ -379,6 +383,7 @@ addEventSubmit.addEventListener("click", () => {
   const newEvent = {
     title: eventTitle,
     time: timeFrom + " - " + timeTo,
+    location: eventLocation,
   };
   console.log(newEvent);
   console.log(activeDay);
@@ -410,6 +415,7 @@ addEventSubmit.addEventListener("click", () => {
   addEventTitle.value = "";
   addEventFrom.value = "";
   addEventTo.value = "";
+  addLocation.value = ""; // Clear location input
   updateEvents(activeDay);
   //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
