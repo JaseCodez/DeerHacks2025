@@ -277,6 +277,7 @@ function updateEvents(date) {
 //function to add event
 addEventBtn.addEventListener("click", () => {
   addEventWrapper.classList.toggle("active");
+  suggestWrapper.classList.remove("active");
 });
 
 addEventCloseBtn.addEventListener("click", () => {
@@ -427,6 +428,7 @@ addEventSubmit.addEventListener("click", () => {
 //function to suggest events
 suggestBtn.addEventListener("click", () => {
   suggestWrapper.classList.toggle("active");
+  addEventWrapper.classList.remove("active");
 });
 
 suggestCloseBtn.addEventListener("click", () => {
@@ -439,10 +441,37 @@ document.addEventListener("click", (e) => {
   }
 });
 
+document.addEventListener("click", (e) => {
+  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
+    suggestWrapper.classList.remove("active");
+  }
+});
+
 //allow 50 chars in suggestcity
 suggestCity.addEventListener("input", (e) => {
   suggestCity.value = suggestCity.value.slice(0, 60);
 });
+
+suggestSubmit.addEventListener("click", () => {
+  const suggestedCity = suggestCity.value;
+  const suggestedCountry = suggestCountry.value;
+  const suggestedDays = suggestNumDates.value;
+  if(suggestedCity === "" || suggestedCountry === "" || suggestNumDates === "") {
+    alert("Please fill out all fields.");
+    return;
+  }
+
+  // output city, country, days here and call data.py
+
+  // once data.py is called, recieve info and add into new event
+
+  // to add new event, look at function for addEventSubmit and reference all that code
+
+  suggestCity.value = "";
+  suggestCountry.value = "Afghanistan";
+  suggestNumDates.value = "1 Day";
+  suggestWrapper.classList.remove("active");
+})
 
 //function to delete event when clicked on event
 eventsContainer.addEventListener("click", (e) => {
