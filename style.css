@@ -474,6 +474,13 @@ body {
   background-color: transparent;
   color: var(--primary-clr);
 }
+#country {
+  width:165px;
+}
+#country option{
+  width:90px;
+}
+
 
 /* media queries */
 

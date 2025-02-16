@@ -16,7 +16,14 @@ const calendar = document.querySelector(".calendar"),
   addEventFrom = document.querySelector(".event-time-from "),
   addEventTo = document.querySelector(".event-time-to "),
   addEventSubmit = document.querySelector(".add-event-btn ");
-
+  suggestBtn = document.querySelector(".suggest"),
+  suggestWrapper = document.querySelector(".suggest-wrapper "),
+  suggestCloseBtn = document.querySelector(".close "),
+  suggestCity = document.querySelector(".suggest-city "),
+  suggestCountry = document.querySelector(".suggest-country "),
+  suggestFrom = document.querySelector(".suggest-start-date "),
+  suggestTo = document.querySelector(".suggest-end-date "),
+  suggestSubmit = document.querySelector(".suggest-btn ");
 let today = new Date();
 let activeDay;
 let month = today.getMonth();
@@ -288,6 +295,26 @@ addEventTitle.addEventListener("input", (e) => {
   addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
+//function to suggest events
+suggestBtn.addEventListener("click", () => {
+  suggestWrapper.classList.toggle("active");
+});
+
+suggestCloseBtn.addEventListener("click", () => {
+  suggestWrapper.classList.remove("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== suggestBtn && !suggestWrapper.contains(e.target)) {
+    suggestWrapper.classList.remove("active");
+  }
+});
+
+//allow 50 chars in suggestcity
+suggestCity.addEventListener("input", (e) => {
+  suggestCity.value = suggestCity.value.slice(0, 60);
+});
+
 function defineProperty() {
   var osccred = document.createElement("div");
   osccred.innerHTML =
@@ -328,6 +355,9 @@ addEventTo.addEventListener("input", (e) => {
     addEventTo.value = addEventTo.value.slice(0, 5);
   }
 });
+
+//ensure end date is after start date
+suggestTo.addEventListener("input")
 
 //function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {
@@ -410,6 +440,10 @@ addEventSubmit.addEventListener("click", () => {
   addEventTitle.value = "";
   addEventFrom.value = "";
   addEventTo.value = "";
+  suggestWrapper.classList.remove("active");
+  suggestCity.value = "";
+  suggestFrom.value = "";
+  suggestTo.value = "";
   updateEvents(activeDay);
   //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
