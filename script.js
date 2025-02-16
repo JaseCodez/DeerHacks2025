@@ -19,8 +19,9 @@ const calendar = document.querySelector(".calendar"),
   addEventSubmit = document.querySelector(".add-event-btn ");
   suggestBtn = document.querySelector(".suggest"),
   suggestWrapper = document.querySelector(".suggest-wrapper "),
-  suggestCloseBtn = document.querySelector(".close "),
+  suggestCloseBtn = document.querySelector(".close-suggest "),
   suggestCity = document.querySelector(".suggest-city "),
+  suggestProvince = document.querySelector(".suggest-province "),
   suggestCountry = document.querySelector(".suggest-country "),
   suggestNumDates = document.querySelector(".suggest-num-dates "),
   suggestSubmit = document.querySelector(".suggest-btn ");
@@ -470,6 +471,7 @@ suggestCity.addEventListener("input", (e) => {
 
 suggestSubmit.addEventListener("click", () => {
   const suggestedCity = suggestCity.value;
+  const suggestedProvince = suggestProvince.value;
   const suggestedCountry = suggestCountry.value;
   const suggestedDays = suggestNumDates.value;
   if(suggestedCity === "" || suggestedCountry === "" || suggestNumDates === "") {
@@ -484,6 +486,7 @@ suggestSubmit.addEventListener("click", () => {
   // to add new event, look at function for addEventSubmit and reference all that code
 
   suggestCity.value = "";
+  suggestProvince.value = "";
   suggestCountry.value = "Afghanistan";
   suggestNumDates.value = "1 Day";
   suggestWrapper.classList.remove("active");
