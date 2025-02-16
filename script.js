@@ -24,6 +24,14 @@ const calendar = document.querySelector(".calendar"),
   suggestFrom = document.querySelector(".suggest-start-date "),
   suggestTo = document.querySelector(".suggest-end-date "),
   suggestSubmit = document.querySelector(".suggest-btn ");
+  suggestBtn = document.querySelector(".suggest"),
+  suggestWrapper = document.querySelector(".suggest-wrapper "),
+  suggestCloseBtn = document.querySelector(".close "),
+  suggestCity = document.querySelector(".suggest-city "),
+  suggestCountry = document.querySelector(".suggest-country "),
+  suggestFrom = document.querySelector(".suggest-start-date "),
+  suggestTo = document.querySelector(".suggest-end-date "),
+  suggestSubmit = document.querySelector(".suggest-btn ");
 let today = new Date();
 let activeDay;
 let month = today.getMonth();
@@ -360,7 +368,7 @@ addEventTo.addEventListener("input", (e) => {
 suggestSubmit.addEventListener("click", () => {
   const suggestStart = suggestStart.value;
   const suggestEnd = suggestEnd.value;
-})
+});
 
 //function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {
@@ -443,10 +451,6 @@ addEventSubmit.addEventListener("click", () => {
   addEventTitle.value = "";
   addEventFrom.value = "";
   addEventTo.value = "";
-  suggestWrapper.classList.remove("active");
-  suggestCity.value = "";
-  suggestFrom.value = "";
-  suggestTo.value = "";
   updateEvents(activeDay);
   //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
